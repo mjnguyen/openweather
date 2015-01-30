@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OMn-UF-YLU">
+                                <rect key="frame" x="26" y="124" width="528" height="243"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oH-yQ-UQG" userLabel="Weather Detail Info">
+                                        <rect key="frame" x="8" y="95" width="255" height="104"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPV-QZ-G6r">
+                                        <rect key="frame" x="117" y="16" width="162" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="162" id="UmA-o2-wYc"/>
+                                            <constraint firstAttribute="height" constant="41" id="vl9-VO-3SQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="117" y="26" width="162" height="41"/>
+                                        </variation>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aym-S2-2MW" userLabel="Current Weather Icon">
+                                        <rect key="frame" x="8" y="0.0" width="101" height="67"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.73728621844799169" green="1" blue="0.77944128220831488" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="NPV-QZ-G6r" firstAttribute="leading" secondItem="aym-S2-2MW" secondAttribute="trailing" constant="8" id="4Rz-5N-9vg"/>
+                                    <constraint firstAttribute="trailing" secondItem="2oH-yQ-UQG" secondAttribute="trailing" constant="10" id="4Ut-ew-LXO"/>
+                                    <constraint firstAttribute="bottom" secondItem="2oH-yQ-UQG" secondAttribute="bottom" constant="22" id="51B-n6-1HM"/>
+                                    <constraint firstItem="aym-S2-2MW" firstAttribute="top" secondItem="OMn-UF-YLU" secondAttribute="top" constant="8" id="PIk-Wv-aez"/>
+                                    <constraint firstItem="NPV-QZ-G6r" firstAttribute="top" secondItem="OMn-UF-YLU" secondAttribute="top" constant="16" id="RDS-dP-Fmg"/>
+                                    <constraint firstAttribute="height" constant="243" id="ced-Gg-yn3"/>
+                                    <constraint firstItem="2oH-yQ-UQG" firstAttribute="top" secondItem="aym-S2-2MW" secondAttribute="bottom" constant="5" id="mU3-RH-M0W"/>
+                                    <constraint firstItem="2oH-yQ-UQG" firstAttribute="leading" secondItem="OMn-UF-YLU" secondAttribute="leading" constant="10" id="qAs-PM-2nY"/>
+                                    <constraint firstItem="2oH-yQ-UQG" firstAttribute="top" secondItem="NPV-QZ-G6r" secondAttribute="bottom" constant="5" id="to2-Wx-yXD"/>
+                                    <constraint firstItem="aym-S2-2MW" firstAttribute="leading" secondItem="OMn-UF-YLU" secondAttribute="leading" constant="8" id="uxC-vj-nAe"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter City Name" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Rfg-t8-dcQ">
+                                <rect key="frame" x="26" y="64" width="200" height="30"/>
+                                <rect key="contentStretch" x="0.34999999999999998" y="0.0" width="1" height="1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="getCurrentWeatherForCityName:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="pbR-JR-Z2j"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="4jS-YS-rF4"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dv-aj-Uf0">
+                                <rect key="frame" x="541" y="64" width="33" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Jx6-bx-zjh"/>
+                                    <constraint firstAttribute="width" constant="30" id="Tkl-tB-dTp"/>
+                                    <constraint firstAttribute="height" constant="30" id="d4e-Cq-R1j"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" image="crosshair_icon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Jx6-bx-zjh"/>
+                                        <exclude reference="Tkl-tB-dTp"/>
+                                        <exclude reference="d4e-Cq-R1j"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="306" y="64" width="30" height="30"/>
+                                    <mask key="constraints">
+                                        <include reference="Jx6-bx-zjh"/>
+                                        <include reference="Tkl-tB-dTp"/>
+                                        <include reference="d4e-Cq-R1j"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="getCurrentLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ECk-jC-3dR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzH-Gj-HlW">
+                                <rect key="frame" x="501" y="64" width="30" height="30"/>
+                                <state key="normal" title="OK">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="271" y="64" width="30" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="getCurrentWeatherForCityName:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KRm-q3-dCY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Rfg-t8-dcQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="5mz-5X-UFf"/>
+                            <constraint firstItem="7dv-aj-Uf0" firstAttribute="leading" secondItem="xzH-Gj-HlW" secondAttribute="trailing" constant="10" id="69e-1l-G2s"/>
+                            <constraint firstItem="xzH-Gj-HlW" firstAttribute="leading" secondItem="Rfg-t8-dcQ" secondAttribute="trailing" constant="20" id="6Yh-q6-8hi"/>
+                            <constraint firstItem="OMn-UF-YLU" firstAttribute="top" secondItem="Rfg-t8-dcQ" secondAttribute="bottom" constant="30" id="Qc9-yU-BIJ"/>
+                            <constraint firstItem="xzH-Gj-HlW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="cjj-hh-NkY"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OMn-UF-YLU" secondAttribute="bottom" constant="300" id="drV-DA-FRZ"/>
+                            <constraint firstItem="OMn-UF-YLU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="kvy-mk-CsJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7dv-aj-Uf0" secondAttribute="trailing" constant="10" id="mbR-rS-fqe"/>
+                            <constraint firstItem="7dv-aj-Uf0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="nPC-wl-zqi"/>
+                            <constraint firstItem="Rfg-t8-dcQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="vb4-yV-SbT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OMn-UF-YLU" secondAttribute="trailing" constant="30" id="yXX-kv-JLq"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="drV-DA-FRZ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="cityInputField" destination="Rfg-t8-dcQ" id="H0V-d8-cOK"/>
+                        <outlet property="currentLocationBtn" destination="7dv-aj-Uf0" id="ieC-tl-Y4m"/>
+                        <outlet property="currentWeatherIcon" destination="aym-S2-2MW" id="qEW-ux-S0r"/>
+                        <outlet property="currentWeatherTextBox" destination="2oH-yQ-UQG" id="p6v-0G-ncH"/>
+                        <outlet property="locationLabel" destination="NPV-QZ-G6r" id="P27-eP-H1G"/>
+                        <outlet property="searchBtn" destination="xzH-Gj-HlW" id="S9c-Ev-6v9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="375" y="347"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="crosshair_icon.png" width="30" height="30"/>
+    </resources>
+</document>

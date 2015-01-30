@@ -28,6 +28,7 @@
         self.geoCodeSystem = [jsonData objectForKey:@"sys"];
         self.windDetails = [jsonData objectForKey:@"wind"];
         self.citytName = [jsonData objectForKey:@"name"];
+        self.currentWeatherIconUrl = [NSString stringWithFormat:@"%@/%@.png", @"http://openweathermap.org/img/w", [[self.weatherDetails firstObject] objectForKey:@"icon"] ];
     }
 
     return self;
