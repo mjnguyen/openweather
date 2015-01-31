@@ -60,7 +60,7 @@
 @property (nonatomic, strong) NSDictionary      *windDetails;   // "wind"
 @property (nonatomic, strong) NSDictionary      *cloudDetails;
 @property (nonatomic, copy)   NSDate            *timestamp;
-@property (nonatomic, copy)   NSString          *citytName;
+@property (nonatomic, copy)   NSString          *cityName;
 @property (nonatomic, copy)   NSString          *cityId;
 @property (nonatomic, copy)   NSString          *httpStatusCode; // "cod"
 @property (nonatomic, copy)   NSString          *currentWeatherIconUrl;
