@@ -27,7 +27,7 @@
         self.weatherDetails = [jsonData objectForKey:@"weather"];
         self.geoCodeSystem = [jsonData objectForKey:@"sys"];
         self.windDetails = [jsonData objectForKey:@"wind"];
-        self.citytName = [jsonData objectForKey:@"name"];
+        self.cityName = [jsonData objectForKey:@"name"];
         self.currentWeatherIconUrl = [NSString stringWithFormat:@"%@/%@.png", @"http://openweathermap.org/img/w", [[self.weatherDetails firstObject] objectForKey:@"icon"] ];
     }
 
@@ -108,7 +108,7 @@
             "\tLow: %2.0f F\n"
             "Humidity: %@%% \n"
             "Wind: %@ mph %@\n"
-            , self.citytName
+            , self.cityName
             , [[self.weatherDetails firstObject] objectForKey:@"description"]
             , [self convertTemp: [[self.mainDetails objectForKey:@"temp"] floatValue] toScale:1]
             , [self convertTemp: [[self.mainDetails objectForKey:@"temp_max"] floatValue] toScale:1]

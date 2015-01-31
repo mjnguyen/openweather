@@ -55,15 +55,19 @@
         [self.actvityIndicator startAnimating];
 
         MNAPICallbackBlock handler = ^(NSError *error, WeatherInformation *result) {
-            if (error == nil) {
+            if ((error == nil) && [result.cityName length] > 0) {
                 // update UI with current weather conditions
-                self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", result.citytName, [result.geoCodeSystem objectForKey:@"country"]];
+                self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", result.cityName, [result.geoCodeSystem objectForKey:@"country"]];
 
                 self.currentWeatherTextBox.text = [result description];
                 NSString *weatherIconUrl = result.currentWeatherIconUrl;
 
                 [self loadImageForURLString:weatherIconUrl forImageView: self.currentWeatherIcon];
 
+            }
+            else {
+                NSString *msg = [NSString stringWithFormat:@"\"%@\" could not be found.  Please try again.", self.cityInputField.text];
+                [TSMessage showNotificationWithTitle:msg type:TSMessageNotificationTypeWarning];
             }
             [self.actvityIndicator stopAnimating];
 
@@ -85,7 +89,7 @@
     MNAPICallbackBlock handler = ^(NSError *error, WeatherInformation *result) {
         if (error == nil) {
             // update UI with current weather conditions
-            self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", result.citytName, [result.geoCodeSystem objectForKey:@"country"]];
+            self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", result.cityName, [result.geoCodeSystem objectForKey:@"country"]];
             self.currentWeatherTextBox.text = [result description];
             NSString *weatherIconUrl = result.currentWeatherIconUrl;
 
