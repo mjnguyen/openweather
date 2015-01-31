@@ -37,6 +37,10 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tUB-yt-Ioq">
+                                        <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                        <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </activityIndicatorView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aym-S2-2MW" userLabel="Current Weather Icon">
                                         <rect key="frame" x="8" y="0.0" width="101" height="67"/>
                                         <constraints>
@@ -56,10 +60,6 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tUB-yt-Ioq">
-                                        <rect key="frame" x="-10" y="-10" width="20" height="20"/>
-                                        <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.73728621844799169" green="1" blue="0.77944128220831488" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -69,11 +69,15 @@
                                     <constraint firstAttribute="bottom" secondItem="2oH-yQ-UQG" secondAttribute="bottom" constant="22" id="51B-n6-1HM">
                                         <variation key="widthClass=compact" constant="41"/>
                                     </constraint>
-                                    <constraint firstItem="aym-S2-2MW" firstAttribute="top" secondItem="OMn-UF-YLU" secondAttribute="top" constant="8" id="PIk-Wv-aez"/>
+                                    <constraint firstItem="aym-S2-2MW" firstAttribute="top" secondItem="OMn-UF-YLU" secondAttribute="top" constant="8" id="PIk-Wv-aez">
+                                        <variation key="widthClass=compact" constant="22"/>
+                                    </constraint>
                                     <constraint firstItem="NPV-QZ-G6r" firstAttribute="top" secondItem="OMn-UF-YLU" secondAttribute="top" constant="16" id="RDS-dP-Fmg"/>
                                     <constraint firstItem="2oH-yQ-UQG" firstAttribute="top" secondItem="tUB-yt-Ioq" secondAttribute="bottom" constant="2" id="bH8-vh-bRt"/>
                                     <constraint firstAttribute="height" constant="243" id="ced-Gg-yn3"/>
-                                    <constraint firstItem="2oH-yQ-UQG" firstAttribute="top" secondItem="aym-S2-2MW" secondAttribute="bottom" constant="5" id="mU3-RH-M0W"/>
+                                    <constraint firstItem="2oH-yQ-UQG" firstAttribute="top" secondItem="aym-S2-2MW" secondAttribute="bottom" constant="5" id="mU3-RH-M0W">
+                                        <variation key="widthClass=compact" constant="-9"/>
+                                    </constraint>
                                     <constraint firstItem="2oH-yQ-UQG" firstAttribute="leading" secondItem="OMn-UF-YLU" secondAttribute="leading" constant="10" id="qAs-PM-2nY"/>
                                     <constraint firstItem="aym-S2-2MW" firstAttribute="leading" secondItem="OMn-UF-YLU" secondAttribute="leading" constant="8" id="uxC-vj-nAe"/>
                                 </constraints>
@@ -103,17 +107,23 @@
                                     <constraint firstAttribute="width" constant="303" id="A0W-5W-en4">
                                         <variation key="widthClass=compact" constant="230"/>
                                     </constraint>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="Sym-5O-MM0"/>
+                                    <constraint firstAttribute="height" constant="30" id="nsK-tU-wRo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="A0W-5W-en4"/>
+                                        <exclude reference="Sym-5O-MM0"/>
+                                        <exclude reference="nsK-tU-wRo"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="A0W-5W-en4"/>
+                                        <include reference="Sym-5O-MM0"/>
+                                        <include reference="nsK-tU-wRo"/>
                                     </mask>
                                 </variation>
                                 <connections>
