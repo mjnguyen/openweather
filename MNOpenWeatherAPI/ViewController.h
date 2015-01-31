@@ -21,6 +21,8 @@
 @property (nonatomic, weak) IBOutlet UILabel     *locationLabel;
 @property (nonatomic, weak) IBOutlet UITextView  *currentWeatherTextBox;
 
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *actvityIndicator;
+
 @property (nonatomic, strong)  MNWeatherAPI    *apiHandler;
 
 

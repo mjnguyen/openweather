@@ -23,9 +23,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
+    // Should load the apiKey from a pList in a production app
     self.apiHandler = [[MNWeatherAPI alloc] initWithAPIKey:@"87ffe556600211fb77dcca20e79bd90a"];
 
     locationManager = [[CLLocationManager alloc] init]; // startup location services
+
+    [self.actvityIndicator stopAnimating];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,19 +41,23 @@
 
 - (IBAction)getCurrentLocation:(id)sender {
     locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
 
     [locationManager startUpdatingLocation];
 }
 
 - (IBAction)getCurrentWeatherForCityName:(id)sender {
+
     // make call to weather api to get the current weather information
     NSString *cityName = self.cityInputField.text;
     if ( [cityName length] > 0 ) {
+        // start the activity indicator
+        [self.actvityIndicator startAnimating];
+
         MNAPICallbackBlock handler = ^(NSError *error, WeatherInformation *result) {
-            if (error == nil) {
+            if ((error == nil) && [result.cityName length] > 0) {
                 // update UI with current weather conditions
-                self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", result.citytName, [result.geoCodeSystem objectForKey:@"country"]];
+                self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", result.cityName, [result.geoCodeSystem objectForKey:@"country"]];
 
                 self.currentWeatherTextBox.text = [result description];
                 NSString *weatherIconUrl = result.currentWeatherIconUrl;
@@ -58,6 +65,12 @@
                 [self loadImageForURLString:weatherIconUrl forImageView: self.currentWeatherIcon];
 
             }
+            else {
+                NSString *msg = [NSString stringWithFormat:@"\"%@\" could not be found.  Please try again.", self.cityInputField.text];
+                [TSMessage showNotificationWithTitle:msg type:TSMessageNotificationTypeWarning];
+            }
+            [self.actvityIndicator stopAnimating];
+
         };
 
         [self.apiHandler currentWeatherByCityName:cityName withCallback: handler];
@@ -69,17 +82,25 @@
 }
 
 - (void)getCurrentWeatherByLocation:(id)sender {
+    // start the activity indicator
+    [self.actvityIndicator startAnimating];
+
     // make call to weather api to get the current weather information
     MNAPICallbackBlock handler = ^(NSError *error, WeatherInformation *result) {
         if (error == nil) {
             // update UI with current weather conditions
-            self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", result.citytName, [result.geoCodeSystem objectForKey:@"country"]];
+            self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", result.cityName, [result.geoCodeSystem objectForKey:@"country"]];
             self.currentWeatherTextBox.text = [result description];
             NSString *weatherIconUrl = result.currentWeatherIconUrl;
 
             [self loadImageForURLString:weatherIconUrl forImageView: self.currentWeatherIcon];
 
+        } else {
+            [TSMessage showNotificationWithTitle:@"Failed to get location information. Perhaps you need to enable Location Services in Settings?" type:TSMessageNotificationTypeWarning];
         }
+
+        // start the activity indicator
+        [self.actvityIndicator stopAnimating];
     };
 
     CLLocationCoordinate2D currentCoords = CLLocationCoordinate2DMake(latitude, longitude);
@@ -122,9 +143,7 @@
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     NSLog(@"didFailWithError: %@", error);
-    UIAlertView *errorAlert = [[UIAlertView alloc]
-                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [errorAlert show];
+    [TSMessage showNotificationWithTitle:@"Failed to get location information. Perhaps you need to enable Location Services in Settings?" type:TSMessageNotificationTypeWarning];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
@@ -139,18 +158,6 @@
 
         [self getCurrentWeatherByLocation:nil];
     }
-}
-
-
-
-#pragma mark - tableview delegates
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
 }
 
 
