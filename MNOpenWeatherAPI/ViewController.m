@@ -27,6 +27,8 @@
     self.apiHandler = [[MNWeatherAPI alloc] initWithAPIKey:@"87ffe556600211fb77dcca20e79bd90a"];
 
     locationManager = [[CLLocationManager alloc] init]; // startup location services
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
 
     [self.actvityIndicator stopAnimating];
 }
@@ -40,8 +42,24 @@
 #pragma mark - Button Actions
 
 - (IBAction)getCurrentLocation:(id)sender {
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    // if location services are restricted do nothing
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied ||
+        [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted )
+    {
+        [TSMessage showNotificationWithTitle:@"Location Services for this application have been turned off.  Please go to the Settings App and turn it on." type:TSMessageNotificationTypeWarning];
+        return;
+    }
+
+    // for iOS 8, specific user level permission is required,
+    // "when-in-use" authorization grants access to the user's location
+    //
+    // important: be sure to include NSLocationWhenInUseUsageDescription along with its
+    // explanation string in your Info.plist or startUpdatingLocation will not work.
+    //
+    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
+    {
+        [locationManager requestWhenInUseAuthorization];
+    }
 
     [locationManager startUpdatingLocation];
 }
