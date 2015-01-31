@@ -96,7 +96,7 @@
         return temp - 273.15;
     }
     else { // Farenheit
-        return (temp - 273.15) * 9 * 0.5 + 32;
+        return (temp - 273.15) * 9 * 0.2 + 32;
     }
 }
 
