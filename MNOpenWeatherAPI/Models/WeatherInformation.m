@@ -90,6 +90,14 @@
 
 }
 
+- (float)maxTemp {
+    return  [self convertTemp: [[self.mainDetails objectForKey:@"temp_max"] floatValue] toScale:1];
+}
+
+- (float)minTemp {
+    return  [self convertTemp: [[self.mainDetails objectForKey:@"temp_min"] floatValue] toScale:1];
+}
+
 - (float)convertTemp: (float)temp toScale: (NSInteger)scale {
     // assume all input is in terms of Kelvin
     if (scale == 0) { // Celsius

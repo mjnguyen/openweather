@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "TSMessage.h"
+#import "ForecastInformation.h"
 
 @interface ViewController () {
     NSArray *weatherResults;
@@ -30,6 +31,7 @@
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
 
+    _forecastItems = [[NSArray alloc] init];
     [self.actvityIndicator stopAnimating];
 }
 
@@ -78,6 +80,7 @@
                 self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", result.cityName, [result.geoCodeSystem objectForKey:@"country"]];
 
                 self.currentWeatherTextBox.text = [result description];
+                [self.currentWeatherTextBox setFont:[UIFont fontWithName:@"Helvetica Neue" size:13.f]];
                 NSString *weatherIconUrl = result.currentWeatherIconUrl;
 
                 [self loadImageForURLString:weatherIconUrl forImageView: self.currentWeatherIcon];
@@ -91,13 +94,23 @@
 
         };
 
+        MNAPICallbackBlock forecastHandler = ^(NSError *error, ForecastInformation *results) {
+            // populate forecast array with results
+            self.forecastItems = [results forecasts];
+            [self.forecastResultsTableView reloadData];
+
+        };
+
+
         [self.apiHandler currentWeatherByCityName:cityName withCallback: handler];
+        [self.apiHandler forecastWeatherByCityName:cityName numDaysForecast:5 withCallback: forecastHandler];
 
     }
     else {
         [TSMessage showNotificationWithTitle:@"Please enter a city name" type:TSMessageNotificationTypeError];
     }
 }
+
 
 - (void)getCurrentWeatherByLocation:(id)sender {
     // start the activity indicator
@@ -109,6 +122,7 @@
             // update UI with current weather conditions
             self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", result.cityName, [result.geoCodeSystem objectForKey:@"country"]];
             self.currentWeatherTextBox.text = [result description];
+
             NSString *weatherIconUrl = result.currentWeatherIconUrl;
 
             [self loadImageForURLString:weatherIconUrl forImageView: self.currentWeatherIcon];
@@ -120,10 +134,18 @@
         // start the activity indicator
         [self.actvityIndicator stopAnimating];
     };
+    MNAPICallbackBlock forecastHandler = ^(NSError *error, ForecastInformation *results) {
+        // populate forecast array with results
+        self.forecastItems = [results forecasts];
+        [self.forecastResultsTableView reloadData];
+
+    };
+
 
     CLLocationCoordinate2D currentCoords = CLLocationCoordinate2DMake(latitude, longitude);
 
     [self.apiHandler currentWeatherByCoordinate:currentCoords withCallback:handler];
+    [self.apiHandler forecastWeatherByCoordinate:currentCoords numDaysForecast:5 withCallback:forecastHandler];
 
 }
 
@@ -153,7 +175,7 @@
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
-    [self getCurrentWeatherForCityName:nil];
+//    [self getCurrentWeatherForCityName:nil];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -176,6 +198,43 @@
 
         [self getCurrentWeatherByLocation:nil];
     }
+}
+
+
+#pragma mark - tableview delegates
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+
+    WeatherInformation *forecast = [self.forecastItems objectAtIndex: indexPath.row];
+    float maxTemp = [forecast maxTemp];
+    float minTemp =[forecast minTemp];
+    NSDateFormatter* day = [[NSDateFormatter alloc] init];
+    [day setDateFormat: @"EEEE @ hh a"];
+    NSString *dayOfWeek = [day stringFromDate: forecast.timestamp];
+
+    NSString *forecastSummary = [NSString stringWithFormat:@"%@ - High: %2.0fF Low: %2.0fF", dayOfWeek, maxTemp, minTemp];
+    cell.textLabel.text = forecastSummary;
+    cell.detailTextLabel.text = [forecast.weatherDetails.firstObject objectForKey:@"description"];
+
+    
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if ((self.forecastItems == nil) || ([self.forecastItems count] == 0))
+        return 0;
+
+    return [self.forecastItems count];
+}
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ForecastCell" forIndexPath:indexPath];
+    [self configureCell:cell atIndexPath:indexPath];
+    return cell;
 }
 
 

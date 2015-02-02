@@ -18,6 +18,8 @@
 		125862171A7AF96100E384D3 /* MNWeatherAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 125862161A7AF96100E384D3 /* MNWeatherAPI.m */; };
 		1258621A1A7B012300E384D3 /* WeatherInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 125862191A7B012300E384D3 /* WeatherInformation.m */; };
 		1258621D1A7B38A300E384D3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1258621C1A7B38A300E384D3 /* CoreLocation.framework */; };
+		128DC9921A7FEE640055BDBB /* ForecastInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 128DC9911A7FEE640055BDBB /* ForecastInformation.m */; };
+		128DC9961A7FFA9C0055BDBB /* NSDate+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 128DC9951A7FFA9C0055BDBB /* NSDate+Extensions.m */; };
 		1297B7C11A7BAA5400154F5A /* NSString+URLEnocder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1297B7C01A7BAA5400154F5A /* NSString+URLEnocder.m */; };
 		12E8755C1A7C15D7003534E5 /* crosshair_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 12E8755B1A7C15D7003534E5 /* crosshair_icon.png */; };
 		12E8755D1A7C1F21003534E5 /* WeatherInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 125862191A7B012300E384D3 /* WeatherInformation.m */; };
@@ -57,6 +59,10 @@
 		125862181A7B012300E384D3 /* WeatherInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherInformation.h; path = Models/WeatherInformation.h; sourceTree = "<group>"; };
 		125862191A7B012300E384D3 /* WeatherInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherInformation.m; path = Models/WeatherInformation.m; sourceTree = "<group>"; };
 		1258621C1A7B38A300E384D3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		128DC9901A7FEE640055BDBB /* ForecastInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForecastInformation.h; path = Models/ForecastInformation.h; sourceTree = "<group>"; };
+		128DC9911A7FEE640055BDBB /* ForecastInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForecastInformation.m; path = Models/ForecastInformation.m; sourceTree = "<group>"; };
+		128DC9941A7FFA9C0055BDBB /* NSDate+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Extensions.h"; path = "Extensions/NSDate+Extensions.h"; sourceTree = "<group>"; };
+		128DC9951A7FFA9C0055BDBB /* NSDate+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Extensions.m"; path = "Extensions/NSDate+Extensions.m"; sourceTree = "<group>"; };
 		1297B7BF1A7BAA5400154F5A /* NSString+URLEnocder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEnocder.h"; sourceTree = "<group>"; };
 		1297B7C01A7BAA5400154F5A /* NSString+URLEnocder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEnocder.m"; sourceTree = "<group>"; };
 		12E8755B1A7C15D7003534E5 /* crosshair_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crosshair_icon.png; sourceTree = "<group>"; };
@@ -109,6 +115,7 @@
 		125861E81A7AF8D600E384D3 /* MNOpenWeatherAPI */ = {
 			isa = PBXGroup;
 			children = (
+				128DC9931A7FFA370055BDBB /* Utilitiies */,
 				12E875561A7C1534003534E5 /* Resources */,
 				125862141A7AF93E00E384D3 /* Models */,
 				125862121A7AF91500E384D3 /* API */,
@@ -175,8 +182,19 @@
 			children = (
 				125862181A7B012300E384D3 /* WeatherInformation.h */,
 				125862191A7B012300E384D3 /* WeatherInformation.m */,
+				128DC9901A7FEE640055BDBB /* ForecastInformation.h */,
+				128DC9911A7FEE640055BDBB /* ForecastInformation.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		128DC9931A7FFA370055BDBB /* Utilitiies */ = {
+			isa = PBXGroup;
+			children = (
+				128DC9941A7FFA9C0055BDBB /* NSDate+Extensions.h */,
+				128DC9951A7FFA9C0055BDBB /* NSDate+Extensions.m */,
+			);
+			name = Utilitiies;
 			sourceTree = "<group>";
 		};
 		12E875561A7C1534003534E5 /* Resources */ = {
@@ -346,6 +364,8 @@
 				125862171A7AF96100E384D3 /* MNWeatherAPI.m in Sources */,
 				1258621A1A7B012300E384D3 /* WeatherInformation.m in Sources */,
 				1297B7C11A7BAA5400154F5A /* NSString+URLEnocder.m in Sources */,
+				128DC9921A7FEE640055BDBB /* ForecastInformation.m in Sources */,
+				128DC9961A7FFA9C0055BDBB /* NSDate+Extensions.m in Sources */,
 				125861F51A7AF8D600E384D3 /* ViewController.m in Sources */,
 				125861EC1A7AF8D600E384D3 /* main.m in Sources */,
 			);
