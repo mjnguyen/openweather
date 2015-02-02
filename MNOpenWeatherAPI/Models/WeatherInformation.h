@@ -67,4 +67,8 @@
 
 -(instancetype)initWithJsonData:(id)jsonData;
 
+-(float)maxTemp;
+-(float)minTemp;
+
+
 @end

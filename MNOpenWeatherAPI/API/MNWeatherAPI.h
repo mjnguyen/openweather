@@ -15,7 +15,7 @@
 
 typedef void (^MNHTTPSuccessResultBlock)(AFHTTPRequestOperation* operation, id responseObject);
 typedef void (^MNHTTPFailureResultBlock)(AFHTTPRequestOperation  *operation, NSError *error);
-typedef void (^MNAPICallbackBlock)(NSError* error, WeatherInformation *result);
+typedef void (^MNAPICallbackBlock)(NSError* error, id result);
 
 #define MN_UNKNOWN_ERROR_CODE 800
 #define MN_QUERY_FAILED_CODE 700
@@ -38,38 +38,40 @@ typedef enum {
 #pragma mark - current weather
 
 -(void) currentWeatherByCityName:(NSString *) name
-                    withCallback:( void (^)( NSError* error, WeatherInformation *result ) )callback;
+                    withCallback:( MNAPICallbackBlock )callback;
 
 
 -(void) currentWeatherByCoordinate:(CLLocationCoordinate2D) coordinate
-                      withCallback:( void (^)( NSError* error, WeatherInformation *result ) )callback;
+                      withCallback:( MNAPICallbackBlock )callback;
 
 -(void) currentWeatherByCityId:(NSString *) cityId
-                  withCallback:( void (^)( NSError* error, WeatherInformation *result ) )callback;
+                  withCallback:( MNAPICallbackBlock )callback;
 
 #pragma mark - forecast
-
--(void) forecastWeatherByCityName:(NSString *) name
-                     withCallback:( void (^)( NSError* error, WeatherInformation *result ) )callback;
+- (void)forecastWeatherByCityName:(NSString *)name
+                  numDaysForecast:(int)daysForecast
+                     withCallback:( MNAPICallbackBlock )callback;
 
 -(void) forecastWeatherByCoordinate:(CLLocationCoordinate2D) coordinate
-                       withCallback:( void (^)( NSError* error, WeatherInformation *result ) )callback;
+                    numDaysForecast:(int)daysForecast
+                       withCallback:( MNAPICallbackBlock )callback;
 
 -(void) forecastWeatherByCityId:(NSString *) cityId
-                   withCallback:( void (^)( NSError* error, WeatherInformation *result ) )callback;
+                numDaysForecast:(int)daysForecast
+                   withCallback:( MNAPICallbackBlock )callback;
 
 #pragma mark forcast - n days
 
 -(void) dailyForecastWeatherByCityName:(NSString *) name
                              withCount:(int) count
-                           andCallback:( void (^)( NSError* error, WeatherInformation *result ) )callback;
+                           andCallback:( MNAPICallbackBlock )callback;
 
 -(void) dailyForecastWeatherByCoordinate:(CLLocationCoordinate2D) coordinate
                                withCount:(int) count
-                             andCallback:( void (^)( NSError* error, WeatherInformation *result ) )callback;
+                             andCallback:( MNAPICallbackBlock )callback;
 
 -(void) dailyForecastWeatherByCityId:(NSString *) cityId
                            withCount:(int) count
-                         andCallback:( void (^)( NSError* error, WeatherInformation *result ) )callback;
+                         andCallback:( void (^)( MNAPICallbackBlock ))callback;
 
 @end
